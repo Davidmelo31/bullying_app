@@ -1,118 +1,185 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  background: linear-gradient(135deg, #ffe9a8, #ffb3c1);
-  color: #333;
-  text-align: center;
+  background: linear-gradient(120deg, #a18cd1, #fbc2eb);
+  color: #222;
 }
 
-header {
+.topbar {
+  background: #4f46e5;
+  color: white;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
-  background: #ff6f61;
-  color: white;
-  padding: 10px 20px;
   align-items: center;
 }
 
-.menu {
+.menu-container {
   position: relative;
 }
 
-.menu button {
+.menu-btn {
   background: none;
   border: none;
   color: white;
-  font-size: 24px;
+  font-size: 1.6em;
   cursor: pointer;
 }
 
-.dropdown {
-  display: none;
+.menu-list {
   position: absolute;
   right: 0;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-}
-
-.dropdown a {
-  display: block;
-  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  list-style: none;
   padding: 10px;
+  margin: 0;
+}
+
+.menu-list li {
+  margin: 5px 0;
+}
+
+.menu-list li a {
   text-decoration: none;
+  color: #333;
 }
 
-.dropdown a:hover {
-  background: #ffd6d6;
+.hidden { display: none; }
+
+.container {
+  padding: 1rem;
 }
 
-main {
-  margin-top: 40px;
-}
-
-button {
-  background: #ff6f61;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ff896f;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
+.info {
   background: white;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
-  position: relative;
-  animation: fadeIn 0.4s ease;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 22px;
-  cursor: pointer;
+.chat-panel {
+  background: white;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
-input, select {
-  width: 90%;
-  margin: 8px 0;
-  padding: 8px;
-  border-radius: 6px;
+.messages {
+  height: 200px;
+  overflow-y: auto;
+  background: #f3f3f3;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.msg.bot {
+  background: #e0e7ff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 10px;
   border: 1px solid #ccc;
 }
 
-footer {
-  margin-top: 40px;
-  background: #fff3f0;
-  padding: 10px;
-  border-top: 2px solid #ff6f61;
+.chat-form button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
-  to {opacity: 1; transform: scale(1);}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+
+.profile-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative; /* agregado para la X */
+}
+
+.modal input, .modal select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+
+.btn.green {
+  background: #16a34a;
+}
+
+.link {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+/* ====== NUEVO: botón de cerrar modal ====== */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
 }

@@ -1,76 +1,82 @@
-// Menú de tres puntos
-const menuBtn = document.getElementById('menuBtn');
-const menuList = document.getElementById('menuList');
-menuBtn.onclick = () => menuList.classList.toggle('hidden');
+document.addEventListener("DOMContentLoaded", () => {
 
-// Chat básico
-const chatForm = document.getElementById('chatForm');
-const inputMsg = document.getElementById('inputMsg');
-const messages = document.getElementById('messages');
+  // Menú de tres puntos
+  const menuBtn = document.getElementById('menuBtn');
+  const menuList = document.getElementById('menuList');
+  menuBtn.onclick = () => menuList.classList.toggle('hidden');
 
-chatForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const msg = document.createElement('div');
-  msg.classList.add('msg');
-  msg.textContent = inputMsg.value;
-  messages.appendChild(msg);
-  inputMsg.value = '';
-  messages.scrollTop = messages.scrollHeight;
-});
+  // Chat básico
+  const chatForm = document.getElementById('chatForm');
+  const inputMsg = document.getElementById('inputMsg');
+  const messages = document.getElementById('messages');
 
-// Modal de login/registro
-const modal = document.getElementById('auth-modal');
-const toggleAuth = document.getElementById('toggle-auth');
-const loginForm = document.getElementById('login-form');
-const registerForm = document.getElementById('register-form');
-const openAuth = document.getElementById('open-auth');
-const userType = document.getElementById('user-type');
-const regSchool = document.getElementById('reg-school');
-const regTitle = document.getElementById('reg-title');
+  chatForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const msg = document.createElement('div');
+    msg.classList.add('msg');
+    msg.textContent = inputMsg.value;
+    messages.appendChild(msg);
+    inputMsg.value = '';
+    messages.scrollTop = messages.scrollHeight;
+  });
 
-// ====== NUEVO ======
-const closeAuth = document.getElementById('close-auth');
-closeAuth.onclick = () => modal.classList.add('hidden');
-// ====================
+  // Modal de login/registro
+  const modal = document.getElementById('auth-modal');
+  const toggleAuth = document.getElementById('toggle-auth');
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  const openAuth = document.getElementById('open-auth');
+  const userType = document.getElementById('user-type');
+  const regSchool = document.getElementById('reg-school');
+  const regTitle = document.getElementById('reg-title');
+  const closeAuth = document.getElementById('close-auth');
 
-openAuth.onclick = () => modal.classList.remove('hidden');
+  // 🔹 ABRIR modal
+  openAuth.onclick = () => modal.classList.remove('hidden');
 
-toggleAuth.onclick = e => {
-  e.preventDefault();
-  const isLogin = !loginForm.classList.contains('hidden');
-  document.getElementById('auth-title').textContent = isLogin ? 'Registro' : 'Iniciar Sesión';
-  loginForm.classList.toggle('hidden');
-  registerForm.classList.toggle('hidden');
-  toggleAuth.textContent = isLogin ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate';
-};
+  // 🔹 CERRAR modal con la X
+  closeAuth.onclick = () => modal.classList.add('hidden');
 
-userType.onchange = () => {
-  regSchool.classList.add('hidden');
-  regTitle.classList.add('hidden');
-  if (userType.value === 'estudiante' || userType.value === 'padre' || userType.value === 'profesor') {
-    regSchool.classList.remove('hidden');
-  } else if (userType.value === 'especialista') {
-    regTitle.classList.remove('hidden');
-  }
-};
-
-// Registro (temporal en localStorage)
-registerForm.onsubmit = e => {
-  e.preventDefault();
-  const userData = {
-    nombre: document.getElementById('reg-name').value,
-    telefono: document.getElementById('reg-phone').value,
-    tipo: userType.value,
-    escuela: regSchool.value,
+  // 🔹 Alternar entre login y registro
+  toggleAuth.onclick = e => {
+    e.preventDefault();
+    const isLogin = !loginForm.classList.contains('hidden');
+    document.getElementById('auth-title').textContent = isLogin ? 'Registro' : 'Iniciar Sesión';
+    loginForm.classList.toggle('hidden');
+    registerForm.classList.toggle('hidden');
+    toggleAuth.textContent = isLogin ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate';
   };
-  localStorage.setItem('usuario', JSON.stringify(userData));
-  alert("Registro exitoso. Ya puedes iniciar sesión.");
-  modal.classList.add('hidden');
-};
 
-// Login (demo)
-loginForm.onsubmit = e => {
-  e.preventDefault();
-  alert("Inicio de sesión exitoso (modo demo).");
-  modal.classList.add('hidden');
-};
+  // 🔹 Mostrar campos según tipo de usuario
+  userType.onchange = () => {
+    regSchool.classList.add('hidden');
+    regTitle.classList.add('hidden');
+    if (userType.value === 'estudiante' || userType.value === 'padre' || userType.value === 'profesor') {
+      regSchool.classList.remove('hidden');
+    } else if (userType.value === 'especialista') {
+      regTitle.classList.remove('hidden');
+    }
+  };
+
+  // 🔹 Registro (temporal en localStorage)
+  registerForm.onsubmit = e => {
+    e.preventDefault();
+    const userData = {
+      nombre: document.getElementById('reg-name').value,
+      telefono: document.getElementById('reg-phone').value,
+      tipo: userType.value,
+      escuela: regSchool.value,
+    };
+    localStorage.setItem('usuario', JSON.stringify(userData));
+    alert("Registro exitoso. Ya puedes iniciar sesión.");
+    modal.classList.add('hidden');
+  };
+
+  // 🔹 Login (demo)
+  loginForm.onsubmit = e => {
+    e.preventDefault();
+    alert("Inicio de sesión exitoso (modo demo).");
+    modal.classList.add('hidden');
+  };
+
+});
