@@ -1,135 +1,167 @@
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
-  color: #fff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background: linear-gradient(120deg, #a18cd1, #fbc2eb);
+  color: #222;
 }
 
-header {
-  background: rgba(0, 0, 0, 0.2);
+.topbar {
+  background: #4f46e5;
+  color: white;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+}
+
+.menu-container {
   position: relative;
 }
 
-.menu-icon {
-  font-size: 28px;
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6em;
   cursor: pointer;
-  user-select: none;
 }
 
-.menu {
-  display: none;
+.menu-list {
   position: absolute;
-  top: 55px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  right: 0;
+  background: white;
   border-radius: 10px;
-  overflow: hidden;
-}
-
-.menu ul {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.menu li:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-main {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-section {
-  display: none;
-  animation: fade 0.5s ease-in-out;
-}
-
-section.active {
-  display: block;
-}
-
-@keyframes fade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.social li {
-  margin: 10px 0;
-}
-
-.social a {
-  color: #fff;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 10px 15px;
-  border-radius: 8px;
-  display: inline-block;
-}
-
-.social a:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-/* Chat box */
-.chat-box {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
   padding: 10px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin: 0;
+}
+
+.menu-list li {
+  margin: 5px 0;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.hidden { display: none; }
+
+.container {
+  padding: 1rem;
+}
+
+.info {
+  background: white;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chat-panel {
+  background: white;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
 .messages {
-  flex: 1;
+  height: 200px;
   overflow-y: auto;
-}
-
-.bot {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 10px;
+  background: #f3f3f3;
+  padding: 0.5rem;
   border-radius: 10px;
-  margin: 5px 0;
-  width: fit-content;
 }
 
-.input-box {
+.msg.bot {
+  background: #e0e7ff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.chat-form {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   margin-top: 10px;
 }
 
-.input-box input {
+.chat-form input {
   flex: 1;
-  padding: 10px;
+  padding: 0.5rem;
   border-radius: 10px;
-  border: none;
-  outline: none;
+  border: 1px solid #ccc;
 }
 
-.input-box button {
-  background: #fff;
+.chat-form button {
+  background: #4f46e5;
+  color: white;
   border: none;
   border-radius: 10px;
-  padding: 10px 15px;
-  color: #4a00e0;
-  cursor: not-allowed;
+  padding: 0.5rem 1rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+
+.profile-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal input, .modal select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+
+.btn.green {
+  background: #16a34a;
+}
+
+.link {
+  color: #4f46e5;
+  text-decoration: none;
 }
