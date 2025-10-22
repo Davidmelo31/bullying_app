@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayuda contra el Bullying</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Anti-Bullying</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Ayuda contra el Bullying</h1>
+  <header>
+    <h1>💜 Anti-Bullying</h1>
+    <div class="menu-icon" id="menuBtn">⋮</div>
+    <div class="menu" id="menu">
+      <ul>
+        <li data-section="inicio">Inicio</li>
+        <li data-section="quees">¿Qué es el Bullying?</li>
+        <li data-section="redes">Redes Sociales</li>
+        <li data-section="ayuda">Especialistas</li>
+        <li data-section="chat">Chat Box</li>
+      </ul>
+    </div>
+  </header>
 
-  <section>
-    <h2>¿Qué es el bullying?</h2>
-    <p>El bullying es una conducta agresiva y repetida que causa daño físico o emocional a otra persona. Puede ser verbal, físico, social o cibernético.</p>
+  <main id="content">
+    <section id="inicio" class="active">
+      <h2>Bienvenido 💬</h2>
+      <p>Esta aplicación busca crear conciencia y apoyar a las personas que sufren o presencian bullying. Selecciona una opción del menú para comenzar.</p>
+    </section>
 
-    <h3>Tipos</h3>
-    <ul>
-      <li><strong>Verbal:</strong> insultos, burlas.</li>
-      <li><strong>Físico:</strong> golpes, empujones.</li>
-      <li><strong>Social:</strong> exclusión, rumores.</li>
-      <li><strong>Cibernético:</strong> mensajes, redes sociales.</li>
-    </ul>
+    <section id="quees">
+      <h2>¿Qué es el Bullying?</h2>
+      <p>El bullying es el acoso físico o psicológico que sufre una persona por parte de otra u otras. Se da en espacios como escuelas, trabajos o en línea, y puede afectar profundamente la salud mental y emocional.</p>
+    </section>
 
-    <h3>¿Qué hacer?</h3>
-    <ol>
-      <li>Habla con alguien de confianza (familiar, profesor, amigo).</li>
-      <li>Guarda evidencia (mensajes o capturas).</li>
-      <li>No respondas con violencia; busca apoyo.</li>
-      <li>Denuncia si es necesario ante las autoridades.</li>
-    </ol>
-  </section>
+    <section id="redes">
+      <h2>Redes Sociales</h2>
+      <p>Sigue nuestras redes para más información y apoyo:</p>
+      <ul class="social">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </section>
 
-  <div class="bot">
-    <h4>Bot de apoyo</h4>
-    <p>Aquí para escucharte</p>
-  </div>
+    <section id="ayuda">
+      <h2>Especialistas en ayuda</h2>
+      <p>Encuentra apoyo profesional:</p>
+      <ul>
+        <li>Psicólogos y orientadores certificados.</li>
+        <li>Centros de atención emocional gratuitos.</li>
+        <li>Líneas de ayuda confidenciales 24/7.</li>
+      </ul>
+    </section>
+
+    <section id="chat">
+      <h2>Chat Box 💬</h2>
+      <div class="chat-box">
+        <div class="messages">
+          <div class="bot">Hola 👋 Soy tu asistente virtual. Pronto podrás hablar conmigo.</div>
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Escribe tu mensaje..." disabled />
+          <button disabled>Enviar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

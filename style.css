@@ -1,30 +1,135 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f2f7ff;
-  color: #222;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.menu ul {
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-h1 {
-  background: #1e88e5;
-  color: white;
-  text-align: center;
-  padding: 15px;
+.menu li {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 section {
-  background: white;
-  margin: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: none;
+  animation: fade 0.5s ease-in-out;
+}
+
+section.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.social li {
+  margin: 10px 0;
+}
+
+.social a {
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.social a:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Chat box */
+.chat-box {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 10px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .bot {
-  background: #e3f2fd;
-  text-align: center;
-  padding: 15px;
-  margin: 20px;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+  width: fit-content;
+}
+
+.input-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.input-box button {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: #4a00e0;
+  cursor: not-allowed;
 }
