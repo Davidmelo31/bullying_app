@@ -1,2 +1,0 @@
-# bullying_app
-
