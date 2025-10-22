@@ -1,129 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ayuda contra el Bullying</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Antibullying</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4f46e5">
 </head>
-
 <body>
-  <header class="topbar">
-    <h1>Ayuda contra el Bullying</h1>
-    <div class="menu-container">
-      <button id="menuBtn" class="menu-btn">⋮</button>
-      <ul id="menuList" class="menu-list hidden">
-        <li><a href="#quees">¿Qué es el Bullying?</a></li>
-        <li><a href="#redes">Redes de apoyo</a></li>
-        <li><a href="#especialistas">Especialistas</a></li>
-        <li><a href="#" id="menu-auth">Iniciar sesión / Registrarse</a></li>
-      </ul>
+  <header>
+    <h1>Mi App Antibullying</h1>
+    <div class="menu">
+      <button id="menuBtn">⋮</button>
+      <div id="menuContent" class="dropdown">
+        <a href="#">Redes Sociales</a>
+        <a href="#">¿Qué es el Bullying?</a>
+        <a href="#">Especialistas en Ayuda</a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <section id="quees" class="info">
-      <h2>¿Qué es el bullying?</h2>
-      <p>El bullying es una conducta agresiva y repetida que causa daño físico o emocional a otra persona. Puede ser verbal, físico, social o cibernético.</p>
-
-      <h3>Tipos</h3>
-      <ul>
-        <li><strong>Verbal:</strong> insultos, burlas.</li>
-        <li><strong>Físico:</strong> golpes, empujones.</li>
-        <li><strong>Social:</strong> exclusión, rumores.</li>
-        <li><strong>Cibernético:</strong> mensajes ofensivos o humillaciones en redes sociales.</li>
-      </ul>
-
-      <h3>¿Qué hacer?</h3>
-      <ol>
-        <li>Habla con alguien de confianza (familiar, profesor, amigo).</li>
-        <li>Guarda evidencia (capturas, mensajes).</li>
-        <li>No respondas con violencia; busca apoyo.</li>
-        <li>Denuncia si es necesario ante autoridades o la institución.</li>
-      </ol>
-    </section>
-
-    <section id="redes" class="info">
-      <h2>Redes de apoyo</h2>
-      <p>Si estás pasando por una situación difícil, puedes contactar:</p>
-      <ul>
-        <li><strong>Línea 141:</strong> ICBF ayuda a niños y adolescentes.</li>
-        <li><strong>Línea 123:</strong> Emergencias y apoyo inmediato.</li>
-        <li><strong>Orientadores escolares:</strong> Busca apoyo en tu institución educativa.</li>
-      </ul>
-    </section>
-
-    <section id="especialistas" class="info">
-      <h2>Especialistas en ayuda</h2>
-      <p>Pronto podrás contactar con profesionales certificados para orientación psicológica y emocional.</p>
-    </section>
-
-    <aside class="chat-panel" id="chatPanel">
-      <div class="chat-header">
-        <div class="bot-info">
-          <div class="bot-avatar">🤖</div>
-          <div>
-            <strong>Bot de apoyo</strong>
-            <div class="status">Aquí para escucharte</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="messages" id="messages" role="log" aria-live="polite">
-        <div class="msg bot">Hola 👋 Soy tu bot de apoyo. Si quieres, cuéntame cómo te sientes o escribe "ayuda".</div>
-      </div>
-
-      <form id="chatForm" class="chat-form" autocomplete="off">
-        <input id="inputMsg" type="text" placeholder="Escribe aquí..." required />
-        <button type="submit">Enviar</button>
-      </form>
-    </aside>
+  <main>
+    <h2>Bienvenido 👋</h2>
+    <p>Explora los recursos, aprende sobre el bullying y encuentra apoyo.</p>
+    <button id="openModal">Iniciar Sesión / Registrarse</button>
   </main>
 
-  <footer class="footer">
-    <small>Proyecto educativo — Si necesitas ayuda real, busca apoyo humano.</small>
-  </footer>
-
-  <!-- ====== MODAL DE INICIO Y REGISTRO ====== -->
-  <div id="auth-modal" class="hidden modal-bg">
-    <div class="modal">
-      <button id="close-auth" class="close-btn">✖</button>
-      <h2 id="auth-title">Iniciar Sesión</h2>
-
-      <form id="login-form">
-        <input type="text" id="login-user" placeholder="Usuario o correo" required>
-        <input type="password" id="login-pass" placeholder="Contraseña" required>
-        <button type="submit" class="btn">Ingresar</button>
-      </form>
-
-      <form id="register-form" class="hidden">
-        <select id="user-type" required>
-          <option value="">Seleccione su rol</option>
+  <!-- Modal de inicio/registro -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h3>Inicia Sesión o Regístrate</h3>
+      <form id="loginForm">
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+        <input type="tel" id="celular" placeholder="Celular" required>
+        <select id="tipoUsuario" required>
+          <option value="">Selecciona tu rol</option>
           <option value="estudiante">Estudiante</option>
-          <option value="padre">Padre de familia</option>
           <option value="profesor">Profesor</option>
+          <option value="padre">Padre de Familia</option>
           <option value="especialista">Especialista</option>
         </select>
 
-        <input type="text" id="reg-name" placeholder="Nombre completo" required>
-        <input type="text" id="reg-phone" placeholder="Celular" required>
-        <input type="text" id="reg-school" placeholder="Institución educativa" class="hidden">
-        <input type="file" id="reg-title" accept="image/*" class="hidden">
-        <input type="password" id="reg-pass" placeholder="Contraseña" required>
-        <button type="submit" class="btn green">Registrarse</button>
+        <div id="extraCampos"></div>
+        <button type="submit">Guardar</button>
       </form>
-
-      <p class="text-center"><a href="#" id="toggle-auth" class="link">¿No tienes cuenta? Regístrate</a></p>
     </div>
   </div>
 
+  <footer>
+    <p>💬 ChatBox (Próximamente disponible)</p>
+  </footer>
+
   <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').catch(console.error);
-    }
-  </script>
 </body>
 </html>

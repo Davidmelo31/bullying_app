@@ -1,82 +1,98 @@
-// Menú de tres puntos
-const menuBtn = document.getElementById('menuBtn');
-const menuList = document.getElementById('menuList');
-menuBtn.onclick = () => menuList.classList.toggle('hidden');
+// --- Menú ---
+const menuBtn = document.getElementById("menuBtn");
+const menuContent = document.getElementById("menuContent");
 
-// Chat básico
-const chatForm = document.getElementById('chatForm');
-const inputMsg = document.getElementById('inputMsg');
-const messages = document.getElementById('messages');
+menuBtn.onclick = () => {
+  menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+};
+window.onclick = (e) => {
+  if (!menuBtn.contains(e.target)) menuContent.style.display = "none";
+};
 
-chatForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const msg = document.createElement('div');
-  msg.classList.add('msg');
-  msg.textContent = inputMsg.value;
-  messages.appendChild(msg);
-  inputMsg.value = '';
-  messages.scrollTop = messages.scrollHeight;
+// --- Modal ---
+const modal = document.getElementById("modal");
+const openModal = document.getElementById("openModal");
+const closeModal = document.getElementById("closeModal");
+const tipoUsuario = document.getElementById("tipoUsuario");
+const extraCampos = document.getElementById("extraCampos");
+
+openModal.onclick = () => modal.style.display = "flex";
+closeModal.onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
+tipoUsuario.addEventListener("change", () => {
+  const tipo = tipoUsuario.value;
+  let campos = "";
+  if (tipo === "estudiante" || tipo === "profesor" || tipo === "padre") {
+    campos += `<input type="text" placeholder="Colegio al que pertenece" required>`;
+  } else if (tipo === "especialista") {
+    campos += `<input type="file" accept="image/*" required>`;
+  }
+  extraCampos.innerHTML = campos;
 });
 
-// Modal de login/registro
-const modal = document.getElementById('auth-modal');
-const toggleAuth = document.getElementById('toggle-auth');
-const loginForm = document.getElementById('login-form');
-const registerForm = document.getElementById('register-form');
-const userType = document.getElementById('user-type');
-const regSchool = document.getElementById('reg-school');
-const regTitle = document.getElementById('reg-title');
-const closeAuth = document.getElementById('close-auth');
-const menuAuth = document.getElementById('menu-auth');
-
-// abrir modal desde el menú
-menuAuth.onclick = (e) => {
+document.getElementById("loginForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  modal.classList.remove('hidden');
-  menuList.classList.add('hidden');
-};
+  alert("✅ Registro completado con éxito");
+  modal.style.display = "none";
+});
 
-// cerrar con la X
-closeAuth.onclick = () => modal.classList.add('hidden');
+// --- Chat ---
+const chatBtn = document.getElementById("chatBtn");
+const chatBox = document.getElementById("chatBox");
+const closeChat = document.getElementById("closeChat");
+const sendMsg = document.getElementById("sendMsg");
+const userMessage = document.getElementById("userMessage");
+const chatMessages = document.getElementById("chatMessages");
 
-// alternar entre login y registro
-toggleAuth.onclick = e => {
-  e.preventDefault();
-  const isLogin = !loginForm.classList.contains('hidden');
-  document.getElementById('auth-title').textContent = isLogin ? 'Registro' : 'Iniciar Sesión';
-  loginForm.classList.toggle('hidden');
-  registerForm.classList.toggle('hidden');
-  toggleAuth.textContent = isLogin ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate';
-};
+chatBtn.onclick = () => chatBox.style.display = "flex";
+closeChat.onclick = () => chatBox.style.display = "none";
 
-// Mostrar campos según tipo
-userType.onchange = () => {
-  regSchool.classList.add('hidden');
-  regTitle.classList.add('hidden');
-  if (['estudiante','padre','profesor'].includes(userType.value)) {
-    regSchool.classList.remove('hidden');
-  } else if (userType.value === 'especialista') {
-    regTitle.classList.remove('hidden');
+// Función para mostrar mensajes
+function mostrarMensaje(texto, clase = "") {
+  const msg = document.createElement("div");
+  msg.className = "message " + clase;
+  msg.textContent = texto;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  guardarChat();
+}
+
+// Guardar mensajes en localStorage
+function guardarChat() {
+  localStorage.setItem("chatGuardado", chatMessages.innerHTML);
+}
+
+// Cargar chat guardado al iniciar
+window.onload = () => {
+  const guardado = localStorage.getItem("chatGuardado");
+  if (guardado) {
+    chatMessages.innerHTML = guardado;
+  } else {
+    const mensajesAuto = [
+      "Hola 👋 Soy tu asistente virtual de apoyo.",
+      "Recuerda que siempre hay personas dispuestas a escucharte 💜",
+      "¿Cómo te sientes hoy?"
+    ];
+    mensajesAuto.forEach((m, i) => setTimeout(() => mostrarMensaje(m), 1000 * (i + 1)));
   }
 };
 
-// Registro (demo)
-registerForm.onsubmit = e => {
-  e.preventDefault();
-  const userData = {
-    nombre: document.getElementById('reg-name').value,
-    telefono: document.getElementById('reg-phone').value,
-    tipo: userType.value,
-    escuela: regSchool.value,
-  };
-  localStorage.setItem('usuario', JSON.stringify(userData));
-  alert("Registro exitoso. Ya puedes iniciar sesión.");
-  modal.classList.add('hidden');
-};
+// Enviar mensaje
+sendMsg.onclick = () => {
+  const texto = userMessage.value.trim();
+  if (!texto) return;
+  mostrarMensaje(texto, "user");
+  userMessage.value = "";
 
-// Login (demo)
-loginForm.onsubmit = e => {
-  e.preventDefault();
-  alert("Inicio de sesión exitoso (modo demo).");
-  modal.classList.add('hidden');
+  // Respuesta automática
+  setTimeout(() => {
+    const respuestas = [
+      "Gracias por compartir 😊",
+      "No estás solo, respira y recuerda tu valor 💜",
+      "Hablar ayuda, estoy aquí para escucharte 💬"
+    ];
+    const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
+    mostrarMensaje(respuesta);
+  }, 1000);
 };
