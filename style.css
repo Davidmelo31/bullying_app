@@ -3,23 +3,22 @@ body {
   margin: 0;
   background: linear-gradient(135deg, #ffe9a8, #ffb3c1);
   color: #333;
-  text-align: center;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
+.topbar {
   background: #ff6f61;
   color: white;
+  display: flex;
+  justify-content: space-between;
   padding: 10px 20px;
   align-items: center;
 }
 
-.menu {
+.menu-container {
   position: relative;
 }
 
-.menu button {
+.menu-btn {
   background: none;
   border: none;
   color: white;
@@ -27,56 +26,92 @@ header {
   cursor: pointer;
 }
 
-.dropdown {
-  display: none;
+.menu-list {
   position: absolute;
   right: 0;
   background: white;
+  list-style: none;
   border-radius: 8px;
+  padding: 10px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-.dropdown a {
+.menu-list li a {
   display: block;
-  color: #333;
-  padding: 10px;
+  padding: 8px;
   text-decoration: none;
+  color: #333;
+}
+.menu-list li a:hover { background: #ffd6d6; }
+.hidden { display: none; }
+
+.container { padding: 1rem; }
+
+.info {
+  background: white;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.dropdown a:hover {
-  background: #ffd6d6;
+.chat-panel {
+  background: white;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
-main {
-  margin-top: 40px;
+.messages {
+  height: 200px;
+  overflow-y: auto;
+  background: #f3f3f3;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
-button {
+.msg {
+  background: #dbeafe;
+  margin-bottom: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.msg.bot {
+  background: #c7d2fe;
+}
+
+.chat-form {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.chat-form button {
   background: #ff6f61;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ff896f;
 }
 
 .modal {
-  display: none;
   position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.6);
+  display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
@@ -86,33 +121,33 @@ button:hover {
   width: 90%;
   max-width: 400px;
   position: relative;
-  animation: fadeIn 0.4s ease;
 }
 
-.close {
+.close-btn {
   position: absolute;
-  right: 15px;
   top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
   font-size: 22px;
   cursor: pointer;
 }
 
-input, select {
-  width: 90%;
-  margin: 8px 0;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-footer {
-  margin-top: 40px;
-  background: #fff3f0;
+.btn {
+  width: 100%;
   padding: 10px;
-  border-top: 2px solid #ff6f61;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
-  to {opacity: 1; transform: scale(1);}
+.btn.green { background: #16a34a; }
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background: #fff3f0;
+  border-top: 2px solid #ff6f61;
 }
