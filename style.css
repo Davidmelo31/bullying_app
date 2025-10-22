@@ -109,19 +109,6 @@ body {
   color: white;
 }
 
-.profile-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #4f46e5;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 15px;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
 .modal-bg {
   position: fixed;
   inset: 0;
@@ -129,6 +116,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 .modal {
@@ -137,15 +125,19 @@ body {
   padding: 2rem;
   width: 90%;
   max-width: 400px;
-  position: relative; /* agregado para la X */
+  position: relative;
 }
 
-.modal input, .modal select {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  cursor: pointer;
+  color: #555;
+  z-index: 9999;
 }
 
 .btn {
@@ -165,21 +157,4 @@ body {
 .link {
   color: #4f46e5;
   text-decoration: none;
-}
-
-/* ====== NUEVO: botón de cerrar modal ====== */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: #555;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: #000;
 }
