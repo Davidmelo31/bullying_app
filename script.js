@@ -1,71 +1,48 @@
-// Menú de tres puntos
-const menuBtn = document.getElementById('menuBtn');
-const menuList = document.getElementById('menuList');
-menuBtn.onclick = () => menuList.classList.toggle('hidden');
+// Menú desplegable de los tres puntos
+const menuBtn = document.getElementById("menuBtn");
+const menuContent = document.getElementById("menuContent");
 
-// Chat básico
-const chatForm = document.getElementById('chatForm');
-const inputMsg = document.getElementById('inputMsg');
-const messages = document.getElementById('messages');
-
-chatForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const msg = document.createElement('div');
-  msg.classList.add('msg');
-  msg.textContent = inputMsg.value;
-  messages.appendChild(msg);
-  inputMsg.value = '';
-  messages.scrollTop = messages.scrollHeight;
-});
-
-// Modal de login/registro
-const modal = document.getElementById('auth-modal');
-const toggleAuth = document.getElementById('toggle-auth');
-const loginForm = document.getElementById('login-form');
-const registerForm = document.getElementById('register-form');
-const openAuth = document.getElementById('open-auth');
-const userType = document.getElementById('user-type');
-const regSchool = document.getElementById('reg-school');
-const regTitle = document.getElementById('reg-title');
-
-openAuth.onclick = () => modal.classList.remove('hidden');
-
-toggleAuth.onclick = e => {
-  e.preventDefault();
-  const isLogin = !loginForm.classList.contains('hidden');
-  document.getElementById('auth-title').textContent = isLogin ? 'Registro' : 'Iniciar Sesión';
-  loginForm.classList.toggle('hidden');
-  registerForm.classList.toggle('hidden');
-  toggleAuth.textContent = isLogin ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate';
+menuBtn.onclick = () => {
+  menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
 };
 
-userType.onchange = () => {
-  regSchool.classList.add('hidden');
-  regTitle.classList.add('hidden');
-  if (userType.value === 'estudiante' || userType.value === 'padre' || userType.value === 'profesor') {
-    regSchool.classList.remove('hidden');
-  } else if (userType.value === 'especialista') {
-    regTitle.classList.remove('hidden');
+window.onclick = (e) => {
+  if (!menuBtn.contains(e.target)) {
+    menuContent.style.display = "none";
   }
 };
 
-// Registro (temporal en localStorage)
-registerForm.onsubmit = e => {
-  e.preventDefault();
-  const userData = {
-    nombre: document.getElementById('reg-name').value,
-    telefono: document.getElementById('reg-phone').value,
-    tipo: userType.value,
-    escuela: regSchool.value,
-  };
-  localStorage.setItem('usuario', JSON.stringify(userData));
-  alert("Registro exitoso. Ya puedes iniciar sesión.");
-  modal.classList.add('hidden');
+// Modal de inicio/registro
+const modal = document.getElementById("modal");
+const openModal = document.getElementById("openModal");
+const closeModal = document.getElementById("closeModal");
+const tipoUsuario = document.getElementById("tipoUsuario");
+const extraCampos = document.getElementById("extraCampos");
+
+openModal.onclick = () => modal.style.display = "flex";
+closeModal.onclick = () => modal.style.display = "none";
+
+window.onclick = (e) => {
+  if (e.target === modal) modal.style.display = "none";
 };
 
-// Login (demo)
-loginForm.onsubmit = e => {
+// Campos dinámicos según el rol
+tipoUsuario.addEventListener("change", () => {
+  const tipo = tipoUsuario.value;
+  let campos = "";
+
+  if (tipo === "estudiante" || tipo === "profesor" || tipo === "padre") {
+    campos += `<input type="text" placeholder="Colegio al que pertenece" required>`;
+  } else if (tipo === "especialista") {
+    campos += `<input type="file" accept="image/*" required>`;
+  }
+
+  extraCampos.innerHTML = campos;
+});
+
+// Registro simulado
+document.getElementById("loginForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  alert("Inicio de sesión exitoso (modo demo).");
-  modal.classList.add('hidden');
-};
+  alert("Datos registrados correctamente ✅");
+  modal.style.display = "none";
+});
