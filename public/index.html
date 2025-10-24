@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LuzEscolar ✨</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6c63ff">
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="logo">🌈 LuzEscolar</h1>
+
+    <div class="menu-container">
+      <button class="menu-toggle" id="menuToggle">⋮</button>
+      <nav class="menu" id="menu">
+        <a href="#" class="menu-item">🏠 Inicio</a>
+        <a href="#" class="menu-item">📘 Qué es el bullying</a>
+        <a href="#" class="menu-item">💬 Consejos</a>
+        <a href="#" class="menu-item">📞 Contacto</a>
+      </nav>
+    </div>
+
+    <button id="openLogin" class="login-btn">Iniciar sesión</button>
+  </header>
+
+  <main class="container fade-in">
+    <section class="info">
+      <h2>Bienvenido a <span>LuzEscolar ✨</span></h2>
+      <p>Tu espacio para aprender, reflexionar y encontrar apoyo frente al bullying escolar. 💜</p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h3>🙋 Qué es el bullying</h3>
+        <p>Es una conducta agresiva, repetida e intencional que busca causar daño físico o emocional a otra persona.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Consejos</h3>
+        <p>No estás solo. Habla con un adulto de confianza, guarda evidencia y busca apoyo.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 Apoyo emocional</h3>
+        <p>Siempre hay alguien dispuesto a escucharte y ayudarte a superar los momentos difíciles.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botón flotante del chat -->
+  <button id="chatToggle" class="chat-icon">💬</button>
+
+  <!-- Chat de apoyo -->
+  <aside class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <span>Chat de Apoyo 💜</span>
+      <button id="closeChat">✖</button>
+    </div>
+    <div class="messages" id="messages">
+      <div class="msg bot">Hola 👋 Soy tu asistente de LuzEscolar. Cuéntame cómo te sientes o escribe "ayuda".</div>
+    </div>
+    <form id="chatForm">
+      <input id="inputMsg" type="text" placeholder="Escribe aquí..." required />
+      <button type="submit">Enviar</button>
+    </form>
+  </aside>
+
+  <!-- Modal de inicio de sesión -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content scale-in">
+      <span id="closeLogin" class="close">✖</span>
+      <h2>Iniciar sesión / Registro</h2>
+      <form id="loginForm">
+        <label>Tipo de usuario:</label>
+        <select id="tipoUsuario" required>
+          <option value="">Seleccionar...</option>
+          <option value="estudiante">Estudiante</option>
+          <option value="profesor">Profesor</option>
+          <option value="padre">Padre de familia</option>
+          <option value="especialista">Especialista</option>
+        </select>
+
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+        <input type="tel" id="celular" placeholder="Celular" required>
+        <input type="text" id="colegio" placeholder="Institución (si aplica)">
+        <input type="file" id="titulo" accept="image/*" style="display:none;">
+
+        <button type="submit" class="btn-gradient">Registrarse / Iniciar</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <small>💜 LuzEscolar — Proyecto educativo contra el bullying 💜</small>
+  </footer>
+
+  <script>
+    // Animación del menú
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
